@@ -1,22 +1,37 @@
-import asyncio
+'''threading'''
+
 from threading import Thread
+import time
 
-loop = asyncio.new_event_loop()
-
-
-def f(loop):
-    asyncio.set_event_loop(loop)
-    loop.run_forever()
+start = time.perf_counter()
 
 
-t = Thread(target=f, args=(loop,))
-t.start()
+def task(name):
+    print(f'Task {name} started')
+    time.sleep(2)
+    print(f'TASK {name} DONE')
+    # raise Exception('ThreadException')
 
 
-@asyncio.coroutine
-def g():
-    yield from asyncio.sleep(1)
-    print('Hello, world!')
+t1 = Thread(target=task, args=('A',))
+t2 = Thread(target=task, args=('B',))
+# task(name='A')
+# task(name='B')
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+
+end = time.perf_counter()
 
 
-loop.call_soon_threadsafe(asyncio.async, g())
+# run() method called when start is called
+# is_alive() to check thread execution, if it is still execute the run() method, start() < is_alive() < join()
+# daemon to run as application daemon
+# main thread
+# exception hook -> threading.exceptionhook = custom_hook
+
+
+print("\n\nRuninig Time = {:.2f} second(s)".format(end-start))
+input('Enter your name')
