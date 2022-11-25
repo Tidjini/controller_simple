@@ -4,19 +4,19 @@ from random import randint
 
 async def get_message():
     message = randint(0, 1_000)
-    print(f'{message} got')
+    print(f"{message} got")
     return message
 
 
 async def process_message(message):
     await asyncio.sleep(randint(1, 5))
-    print(f'{message} processed')
+    print(f"{message} processed")
     return message
 
 
 async def deal_with_message(message):
     await asyncio.sleep(randint(1, 5))
-    print(f'{message} dealt')
+    print(f"{message} dealt")
 
 
 async def utilize_message():
@@ -43,7 +43,7 @@ def on_utilized(_):
     populate_tasks()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     try:
         populate_tasks()
