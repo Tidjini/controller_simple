@@ -6,7 +6,7 @@ import socketio
 sio = socketio.AsyncClient()
 main_event = Event()
 
-
+# some changes
 async def chatting():
     message = None
     while message != "quit":
